@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>dt_api</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dt-api-httpclient\HttpClientAsync.csproj" />
+    <ProjectReference Include="..\WebClientAsync\WebClientSync.csproj" />
+    <ProjectReference Include="..\dt-api-httpclient\HttpClientSync.csproj" />
+  </ItemGroup>
+</Project>
