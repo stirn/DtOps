@@ -12,8 +12,8 @@
     <None Remove="dt-client.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dt-api-httpclient\HttpClientAsync.csproj" />
-    <ProjectReference Include="..\dt-api\DtApi.csproj" />
+    <ProjectReference Include="..\HttpClientSync\HttpClientSync.csproj" />
+    <ProjectReference Include="..\DtApi\DtApi.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />

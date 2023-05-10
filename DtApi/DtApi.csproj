@@ -11,8 +11,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dt-api-httpclient\HttpClientAsync.csproj" />
-    <ProjectReference Include="..\WebClientAsync\WebClientSync.csproj" />
-    <ProjectReference Include="..\dt-api-httpclient\HttpClientSync.csproj" />
+    <ProjectReference Include="..\HttpClientSync\HttpClientSync.csproj" />
   </ItemGroup>
 </Project>
