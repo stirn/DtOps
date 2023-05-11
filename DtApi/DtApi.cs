@@ -43,8 +43,8 @@ public class Api : Default
     //--- Determines if there are any tasks associated with the token that are being processed
     public void GetBomTokenStatus(string processingToken)
     {
-        var url = $"{apiUrl}/api/v1/bom/token/{processingToken}";
-        var pollCounter = 0;
+        string url = $"{apiUrl}/api/v1/bom/token/{processingToken}";
+        int pollCounter = 0;
         while (true)
         {
             if (pollCounter > 300)
@@ -52,7 +52,7 @@ public class Api : Default
                 throw new Exception("Something went wrong - dtrack could not finish processing in 5 minutes");
             }
             string responseBody = apiClient.Get(url);
-            var jsonObject = JObject.Parse(responseBody);
+            JObject jsonObject = JObject.Parse(responseBody);
             if (!jsonObject.Value<bool>("processing"))
             {
                 break;

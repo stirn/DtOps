@@ -9,9 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="dt-client.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\HttpClientSync\HttpClientSync.csproj" />
     <ProjectReference Include="..\DtApi\DtApi.csproj" />
   </ItemGroup>
