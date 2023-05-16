@@ -36,7 +36,7 @@ public class Api : Default
         httpContent.Add(new StringContent("true"), "autoCreate");
         httpContent.Add(fileContent, "bom");
 
-        string responseBody = apiClient.Post(url, httpContent);
+        string responseBody = apiClient.Send(HttpMethod.Post, url, httpContent);
         return JObject.Parse(responseBody);
     }
 
@@ -51,7 +51,7 @@ public class Api : Default
             {
                 throw new Exception("Something went wrong - dtrack could not finish processing in 5 minutes");
             }
-            string responseBody = apiClient.Get(url);
+            string responseBody = apiClient.Send(HttpMethod.Get, url);
             JObject jsonObject = JObject.Parse(responseBody);
             if (!jsonObject.Value<bool>("processing"))
             {
@@ -67,7 +67,7 @@ public class Api : Default
     public JObject GetProjectMetrics(string projectUuid)
     {
         string url = $"{apiUrl}/api/v1/metrics/project/{projectUuid}/current";
-        string responseBody = apiClient.Get(url);
+        string responseBody = apiClient.Send(HttpMethod.Get, url);
         return JObject.Parse(responseBody);
     }
 
@@ -76,7 +76,7 @@ public class Api : Default
     public JArray GetProject()
     {
         string url = $"{apiUrl}/api/v1/project/";
-        string responseBody = apiClient.Get(url);
+        string responseBody = apiClient.Send(HttpMethod.Get, url);
         return JArray.Parse(responseBody);
     }
 
@@ -84,7 +84,7 @@ public class Api : Default
     public JObject GetProjectLookup(string projectName)
     {
         string url = $"{apiUrl}/api/v1/project/lookup?name={Uri.EscapeDataString(projectName)}";
-        string responseBody = apiClient.Get(url);
+        string responseBody = apiClient.Send(HttpMethod.Get, url);
         return JObject.Parse(responseBody);
     }
 }

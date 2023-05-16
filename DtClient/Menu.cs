@@ -16,10 +16,10 @@ public class Menu
     [Verb("PostBom", HelpText = "Upload a supported bill of material format document")]
     public class PostBomOptions : BaseOptions
     {
-        [Option('n', "projectName", Required = false, HelpText = "Name of the project")]
+        [Option('n', "projectName", Required = true, HelpText = "Name of the project")]
         public string? projectName { get; set; }
 
-        [Option('f', "fileName", Required = false, HelpText = "Name of the file to process")]
+        [Option('f', "fileName", Required = true, HelpText = "Name of the file to process")]
         public string? fileName { get; set; }
     }
 
