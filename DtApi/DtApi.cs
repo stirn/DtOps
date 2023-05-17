@@ -17,7 +17,7 @@ public class Api
         request = new HttpRequestMessage();
     }
 
-    //----- BOM SECTION
+    //- BOM SECTION
     //--- Upload a supported bill of material format document
     public JObject PostBom(string projectName, string fileName)
     {
@@ -61,7 +61,7 @@ public class Api
         }
     }
 
-    //--- METRICS SECTION
+    //- METRICS SECTION
     //--- Returns current metrics for a specific project
     public JObject GetProjectMetrics(string projectUuid)
     {
@@ -71,7 +71,7 @@ public class Api
         return JObject.Parse(responseBody);
     }
 
-    //----- PROJECT SECTION
+    //- PROJECT SECTION
     //--- Returns a list of all projects
     public JArray GetProject()
     {
