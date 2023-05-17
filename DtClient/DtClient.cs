@@ -34,7 +34,6 @@ class Program
     {
         Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
         JObject token = Api.PostBom(opts.projectName, opts.fileName);
-        //Api.GetBomTokenStatus(token.Value<string>("token"));
         Console.WriteLine(token);
         return token;
     }

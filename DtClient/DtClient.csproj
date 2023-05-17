@@ -9,11 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HttpClientSync\HttpClientSync.csproj" />
-    <ProjectReference Include="..\DtApi\DtApi.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DtApi\DtApi.csproj" />
   </ItemGroup>
 </Project>

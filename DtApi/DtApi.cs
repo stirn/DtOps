@@ -2,31 +2,25 @@
 
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
-using Selfmade.Utilities.Network;
 
-public class Default
+public class Api
 {
-    protected HttpClientSync apiClient;
+    protected HttpClient apiClient;
     protected string apiUrl;
+    protected HttpRequestMessage request;
 
-    public Default(string apiUrl, string apiKey)
+    public Api(string apiUrl, string apiKey)
     {
         this.apiUrl = apiUrl;
-        apiClient = new HttpClientSync();
-        apiClient.AddHeaders("X-Api-Key", apiKey);
+        apiClient = new HttpClient();
+        apiClient.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
+        request = new HttpRequestMessage();
     }
-}
-
-public class Api : Default
-{
-    public Api(string apiUrl, string apiKey) : base(apiUrl, apiKey) { }
 
     //----- BOM SECTION
     //--- Upload a supported bill of material format document
     public JObject PostBom(string projectName, string fileName)
     {
-        string url = $"{apiUrl}/api/v1/bom/";
-
         FileStream fileStream = File.OpenRead(fileName);
         StreamContent fileContent = new StreamContent(fileStream);
         fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -36,14 +30,19 @@ public class Api : Default
         httpContent.Add(new StringContent("true"), "autoCreate");
         httpContent.Add(fileContent, "bom");
 
-        string responseBody = apiClient.Send(HttpMethod.Post, url, httpContent);
+        request.Method = HttpMethod.Post;
+        request.RequestUri = new Uri($"{apiUrl}/api/v1/bom/");
+        request.Content = httpContent;
+
+        string responseBody = apiClient.Send(request).Content.ReadAsStringAsync().Result;
         return JObject.Parse(responseBody);
     }
 
     //--- Determines if there are any tasks associated with the token that are being processed
     public void GetBomTokenStatus(string processingToken)
     {
-        string url = $"{apiUrl}/api/v1/bom/token/{processingToken}";
+        request.Method = HttpMethod.Get;
+        request.RequestUri = new Uri($"{apiUrl}/api/v1/bom/token/{processingToken}");
         int pollCounter = 0;
         while (true)
         {
@@ -51,7 +50,7 @@ public class Api : Default
             {
                 throw new Exception("Something went wrong - dtrack could not finish processing in 5 minutes");
             }
-            string responseBody = apiClient.Send(HttpMethod.Get, url);
+            string responseBody = apiClient.Send(request).Content.ReadAsStringAsync().Result;
             JObject jsonObject = JObject.Parse(responseBody);
             if (!jsonObject.Value<bool>("processing"))
             {
@@ -66,8 +65,9 @@ public class Api : Default
     //--- Returns current metrics for a specific project
     public JObject GetProjectMetrics(string projectUuid)
     {
-        string url = $"{apiUrl}/api/v1/metrics/project/{projectUuid}/current";
-        string responseBody = apiClient.Send(HttpMethod.Get, url);
+        request.Method = HttpMethod.Get;
+        request.RequestUri = new Uri($"{apiUrl}/api/v1/metrics/project/{projectUuid}/current");
+        string responseBody = apiClient.Send(request).Content.ReadAsStringAsync().Result;
         return JObject.Parse(responseBody);
     }
 
@@ -75,16 +75,23 @@ public class Api : Default
     //--- Returns a list of all projects
     public JArray GetProject()
     {
-        string url = $"{apiUrl}/api/v1/project/";
-        string responseBody = apiClient.Send(HttpMethod.Get, url);
+        request.Method = HttpMethod.Get;
+        request.RequestUri = new Uri($"{apiUrl}/api/v1/project/");
+        string responseBody = apiClient.Send(request).Content.ReadAsStringAsync().Result;
         return JArray.Parse(responseBody);
     }
 
     //--- Returns a specific project by its name and version
     public JObject GetProjectLookup(string projectName)
     {
-        string url = $"{apiUrl}/api/v1/project/lookup?name={Uri.EscapeDataString(projectName)}";
-        string responseBody = apiClient.Send(HttpMethod.Get, url);
+        request.Method = HttpMethod.Get;
+        request.RequestUri = new Uri($"{apiUrl}/api/v1/project/lookup?name={Uri.EscapeDataString(projectName)}");
+        string responseBody = apiClient.Send(request).Content.ReadAsStringAsync().Result;
         return JObject.Parse(responseBody);
+    }
+
+    public void Dispose()
+    {
+        throw new NotImplementedException();
     }
 }
