@@ -30,11 +30,13 @@ class Program
            .WithNotParsed(errs => HandleParseError(errs));
     }
 
-    static void PostBom(PostBomOptions opts)
+    static JObject PostBom(PostBomOptions opts)
     {
         Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
         JObject token = Api.PostBom(opts.projectName, opts.fileName);
-        Api.GetBomTokenStatus(token.Value<string>("token"));
+        //Api.GetBomTokenStatus(token.Value<string>("token"));
+        Console.WriteLine(token);
+        return token;
     }
 
     static void GetBomTokenStatus(GetBomTokenStatusOptions opts)
