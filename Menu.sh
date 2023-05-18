@@ -25,7 +25,7 @@ PrintHelp() {
     echo "      -d                  UUID of the project"
     echo ""
     echo "  GetProject:"
-    echo "      No keys required"
+    echo "                          No keys required"
     echo ""
     echo "  GetProjectLookup:"
     echo "      -n                  Name of the project"
