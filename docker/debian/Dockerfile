@@ -1,5 +1,0 @@
-FROM debian
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-COPY ./DtClient /usr/local/bin/
-ENTRYPOINT []
-
