@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $(dirname $(realpath $0))/DtClient.sh
+
 case $1 in
     PostBom)
         shift
