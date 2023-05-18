@@ -1,6 +1,6 @@
 #!/bin/bash
 
-post_bom() {
+PostBom() {
     local apiUrl=""
     local apiKey=""
     local projectName=""
@@ -33,7 +33,7 @@ post_bom() {
     echo "File Name: $fileName"
 }
 
-get_bom_token_status() {
+GetBomTokenStatus() {
     local apiUrl=""
     local apiKey=""
     local bomToken=""
@@ -61,7 +61,7 @@ get_bom_token_status() {
     echo "BOM Token: $bomToken"
 }
 
-get_project_metrics() {
+GetProjectMetrics() {
     local apiUrl=""
     local apiKey=""
     local projectUuid=""
@@ -89,7 +89,7 @@ get_project_metrics() {
     echo "Project UUID: $projectUuid"
 }
 
-get_project() {
+GetProject() {
     local apiUrl="https://"
     local apiKey=""
 
@@ -112,10 +112,27 @@ get_project() {
     echo "API Key: $apiKey"
 }
 
-get_project_lookup() {
-    local apiUrl="$1"
-    local apiKey="$2"
-    local projectName="$3"
+GetProjectLookup() {
+    local apiUrl=""
+    local apiKey=""
+    local projectName=""
+
+    while getopts "u:k:t:" opt; do
+        case $opt in
+            u)
+                apiUrl=$OPTARG
+                ;;
+            k)
+                apiKey=$OPTARG
+                ;;
+            n)
+                projectName=$OPTARG
+                ;;
+            *)
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
 
     echo "GetProjectLookup selected"
     echo "API URL: $apiUrl"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-print_help() {
+PrintHelp() {
     echo "Usage: $0 <Command> [options]"
     echo "Commands:"
     echo "  PostBom               Upload a supported bill of material format document"
@@ -20,31 +20,27 @@ print_help() {
 case $1 in
     PostBom)
         shift
-        post_bom "$@"
+        PostBom "$@"
         ;;
     GetBomTokenStatus)
         shift
-        get_bom_token_status "$@"
+        GetBomTokenStatus "$@"
         ;;
     GetProjectMetrics)
         shift
-        get_project_metrics "$@"
+        GetProjectMetrics "$@"
         ;;
     GetProject)
         shift
-        get_project "$@"
+        GetProject "$@"
         ;;
     GetProjectLookup)
         shift
-        get_project_lookup "$@"
-        ;;
-    JParse)
-        shift
-        jparse "$@"
+        GetProjectLookup "$@"
         ;;
     *)
         echo "Invalid option: $1"
-        print_help
+        PrintHelp
         exit 1
         ;;
 esac

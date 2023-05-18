@@ -1,21 +1,5 @@
 #!/bin/bash
 
-get_project_lookup() {
-  local dt_api_key="$1"
-  local project_name="$2"
-  local url="$dt_url/api/v1/project/lookup?name=$project_name"
-  local curl_params=(
-    -s
-    -X
-    'GET'
-    "$url"
-    -H "X-Api-Key: $dt_api_key"
-    -H "accept: application/json"
-  )
-  local response=$(curl "${curl_params[@]}")
-  echo "$response"
-}
-
 # Define a function to upload the BOM file and retrieve the processing token
 post_bom() {
   local dt_api_key="$1"
@@ -64,6 +48,38 @@ get_project_metrics() {
   local dt_api_key="$1"
   local project_uuid="$2"
   local url="$dt_url/api/v1/metrics/project/$project_uuid/current"
+  local curl_params=(
+    -s
+    -X
+    'GET'
+    "$url"
+    -H "X-Api-Key: $dt_api_key"
+    -H "accept: application/json"
+  )
+  local response=$(curl "${curl_params[@]}")
+  echo "$response"
+}
+
+get-project() {
+  local uri="$1/api/v1/project"
+  local api_key="$2"
+  local curl_params=(
+    -s
+    -X
+    'GET'
+    "$uri"
+    -H "X-Api-Key: $api_key"
+    -H "accept: application/json"
+  )
+  local response=$(curl "${curl_params[@]}")
+  echo "$response"
+}
+}
+
+get_project_lookup() {
+  local dt_api_key="$1"
+  local project_name="$2"
+  local url="$dt_url/api/v1/project/lookup?name=$project_name"
   local curl_params=(
     -s
     -X
