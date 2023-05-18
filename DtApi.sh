@@ -60,7 +60,7 @@ get_project_metrics() {
   echo "$response"
 }
 
-get-project() {
+get_project() {
   local uri="$1/api/v1/project"
   local api_key="$2"
   local curl_params=(

@@ -92,16 +92,16 @@ GetProjectMetrics() {
 }
 
 GetProject() {
-    local apiUrl="https://"
-    local apiKey=""
+    local api_url="https://"
+    local api_key=""
 
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=${apiUrl}${OPTARG}
+                api_url=${api_url}${OPTARG}
                 ;;
             k)
-                apiKey=$OPTARG
+                api_key=$OPTARG
                 ;;
             *)
                 ;;
@@ -109,9 +109,7 @@ GetProject() {
     done
     shift $((OPTIND - 1))
 
-    echo "GetProject selected"
-    echo "API URL: $apiUrl"
-    echo "API Key: $apiKey"
+    get_project $api_url $api_key
 }
 
 GetProjectLookup() {
