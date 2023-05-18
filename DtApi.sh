@@ -72,7 +72,7 @@ get_project() {
     -H "accept: application/json"
   )
   local response=$(curl "${curl_params[@]}")
-  echo "$response"
+  echo "$response" | jq '.'
 }
 
 get_project_lookup() {
