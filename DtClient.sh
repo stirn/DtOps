@@ -11,7 +11,7 @@ PostBom() {
     while getopts "u:k:n:f:" opt; do
         case $opt in
             u)
-                apiUrl=${api_url}${OPTARG}
+                apiUrl=${apiUrl}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -39,7 +39,7 @@ GetBomTokenStatus() {
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=${api_url}${OPTARG}
+                apiUrl=${apiUrl}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -64,7 +64,7 @@ GetProjectMetrics() {
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=${api_url}${OPTARG}
+                apiUrl=${apiUrl}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -82,16 +82,16 @@ GetProjectMetrics() {
 }
 
 GetProject() {
-    local api_url="https://"
-    local api_key=""
+    local apiUrl="https://"
+    local apiKey=""
 
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                api_url=${api_url}${OPTARG}
+                apiUrl=${apiUrl}${OPTARG}
                 ;;
             k)
-                api_key=$OPTARG
+                apiKey=$OPTARG
                 ;;
             *)
                 ;;
@@ -99,7 +99,7 @@ GetProject() {
     done
     shift $((OPTIND - 1))
 
-    get_project $api_url $api_key | jq '.'
+    get_project $apiUrl $apiKey | jq '.'
 }
 
 GetProjectLookup() {
@@ -110,7 +110,7 @@ GetProjectLookup() {
     while getopts "u:k:n:" opt; do
         case $opt in
             u)
-                apiUrl=${api_url}${OPTARG}
+                apiUrl=${apiUrl}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -124,7 +124,7 @@ GetProjectLookup() {
     done
     shift $((OPTIND - 1))
 
-    get_project_lookup $api_url $api_key $projectName #| jq '.'
+    get_project_lookup $apiUrl $apiKey $projectName #| jq '.'
 }
 
 source $(dirname $(realpath $0))/Menu.sh
