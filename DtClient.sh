@@ -1,0 +1,105 @@
+#!/bin/bash
+
+source $(dirname $(realpath $0))/Menu.sh
+
+post_bom() {
+    local apiUrl="$1"
+    local apiKey="$2"
+    local projectName="$3"
+    local fileName="$4"
+
+    # Add your code here to handle the "PostBom" option
+    echo "PostBom selected"
+    echo "API URL: $apiUrl"
+    echo "API Key: $apiKey"
+    echo "Project Name: $projectName"
+    echo "File Name: $fileName"
+}
+
+get_bom_token_status() {
+    local apiUrl="$1"
+    local apiKey="$2"
+    local bomToken="$3"
+
+    # Add your code here to handle the "GetBomTokenStatus" option
+    echo "GetBomTokenStatus selected"
+    echo "API URL: $apiUrl"
+    echo "API Key: $apiKey"
+    echo "BOM Token: $bomToken"
+}
+
+get_project_metrics() {
+    local apiUrl="$1"
+    local apiKey="$2"
+    local projectUuid="$3"
+
+    # Add your code here to handle the "GetProjectMetrics" option
+    echo "GetProjectMetrics selected"
+    echo "API URL: $apiUrl"
+    echo "API Key: $apiKey"
+    echo "Project UUID: $projectUuid"
+}
+
+get_project() {
+    local apiUrl="$1"
+    local apiKey="$2"
+
+    # Add your code here to handle the "GetProject" option
+    echo "GetProject selected"
+    echo "API URL: $apiUrl"
+    echo "API Key: $apiKey"
+}
+
+get_project_lookup() {
+    local apiUrl="$1"
+    local apiKey="$2"
+    local projectName="$3"
+
+    # Add your code here to handle the "GetProjectLookup" option
+    echo "GetProjectLookup selected"
+    echo "API URL: $apiUrl"
+    echo "API Key: $apiKey"
+    echo "Project Name: $projectName"
+}
+
+jparse() {
+    local jKey="$1"
+
+    # Add your code here to handle the "JParse" option
+    echo "JParse selected"
+    echo "Key: $jKey"
+}
+
+# Parse the command-line arguments and call the appropriate function
+
+case $1 in
+    PostBom)
+        shift
+        post_bom "$@"
+        ;;
+    GetBomTokenStatus)
+        shift
+        get_bom_token_status "$@"
+        ;;
+    GetProjectMetrics)
+        shift
+        get_project_metrics "$@"
+        ;;
+    GetProject)
+        shift
+        get_project "$@"
+        ;;
+    GetProjectLookup)
+        shift
+        get_project_lookup "$@"
+        ;;
+    JParse)
+        shift
+        jparse "$@"
+        ;;
+    *)
+        echo "Invalid option: $1"
+        exit 1
+        ;;
+esac
+
