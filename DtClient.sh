@@ -109,7 +109,7 @@ GetProject() {
     done
     shift $((OPTIND - 1))
 
-    get_project $api_url $api_key
+    get_project $api_url $api_key | jq '.'
 }
 
 GetProjectLookup() {
