@@ -53,7 +53,7 @@ GetBomTokenStatus() {
     done
     shift $((OPTIND - 1))
 
-    get_bom_token_status $apiUrl $apiKey $bomToken | jq '.'
+    get_bom_token_status $apiUrl $apiKey $bomToken # | jq '.'
 }
 
 GetProjectMetrics() {
