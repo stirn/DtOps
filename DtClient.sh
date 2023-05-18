@@ -3,7 +3,7 @@
 source $(dirname $(realpath $0))/DtApi.sh
 
 PostBom() {
-    local apiUrl=""
+    local apiUrl="https://"
     local apiKey=""
     local projectName=""
     local fileName=""
@@ -32,7 +32,7 @@ PostBom() {
 }
 
 GetBomTokenStatus() {
-    local apiUrl=""
+    local apiUrl="https://"
     local apiKey=""
     local bomToken=""
 
@@ -57,7 +57,7 @@ GetBomTokenStatus() {
 }
 
 GetProjectMetrics() {
-    local apiUrl=""
+    local apiUrl="https://"
     local apiKey=""
     local projectUuid=""
 
@@ -103,7 +103,7 @@ GetProject() {
 }
 
 GetProjectLookup() {
-    local apiUrl=""
+    local apiUrl="https://"
     local apiKey=""
     local projectName=""
 
