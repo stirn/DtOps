@@ -76,9 +76,9 @@ get_project() {
 }
 
 get_project_lookup() {
-  local uri="$1/api/v1/project/lookup?name=$project_name"
   local api_key="$2"
   local project_name="$3"
+  local uri="$1/api/v1/project/lookup?name=$project_name"
   local curl_params=(
     -s
     -X
