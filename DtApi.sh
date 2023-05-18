@@ -72,7 +72,7 @@ get_project() {
     -H "accept: application/json"
   )
   local response=$(curl "${curl_params[@]}")
-  echo "$response" | jq '. | . * {pretty}'
+  echo "$response" | jq '.' | jq -c --argjson indent 4 'walk(if type == "object" or type == "array" then . else . end)')
 }
 
 get_project_lookup() {
