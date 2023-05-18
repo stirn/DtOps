@@ -76,11 +76,6 @@ get_project() {
 }
 
 get_project_lookup() {
-  echo $1
-  echo $2
-  echo $3
-
-
   local api_key="$2"
   local project_name="$3"
   local uri="$1/api/v1/project/lookup?name=$project_name"
