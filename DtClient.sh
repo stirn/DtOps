@@ -2,31 +2,6 @@
 
 #source $(dirname $(realpath $0))/Menu.sh
 
-case $1 in
-    PostBom)
-        shift
-        post_bom "$@"
-        ;;
-    GetBomTokenStatus)
-        shift
-        get_bom_token_status "$@"
-        ;;
-    GetProjectMetrics)
-        shift
-        get_project_metrics "$@"
-        ;;
-    GetProject)
-        shift
-        get_project "$@"
-        ;;
-    
-    *)
-        echo "Invalid option: $1"
-        print_help
-        exit 1
-        ;;
-esac
-
 print_help() {
     echo "Usage: $0 <Command> [options]"
     echo "Commands:"
