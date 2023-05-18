@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $(dirname $(realpath $0))/DtApi.sh
+
 PostBom() {
     local apiUrl=""
     local apiKey=""
