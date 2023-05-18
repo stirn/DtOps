@@ -28,7 +28,7 @@ PostBom() {
     done
     shift $((OPTIND - 1))
 
-    post_bom $apiUrl $apiKey $projectName $fileName # | jq '.'
+    post_bom $apiUrl $apiKey $projectName $fileName | jq '.'
 }
 
 GetBomTokenStatus() {
@@ -124,7 +124,7 @@ GetProjectLookup() {
     done
     shift $((OPTIND - 1))
 
-    get_project_lookup $apiUrl $apiKey $projectName #| jq '.'
+    get_project_lookup $apiUrl $apiKey $projectName | jq '.'
 }
 
 source $(dirname $(realpath $0))/Menu.sh
