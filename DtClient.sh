@@ -107,7 +107,7 @@ GetProjectLookup() {
     local apiKey=""
     local projectName=""
 
-    while getopts "u:k:t:" opt; do
+    while getopts "u:k:n:" opt; do
         case $opt in
             u)
                 apiUrl=$OPTARG
