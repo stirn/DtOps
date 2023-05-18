@@ -23,9 +23,9 @@ post_bom() {
 
 # Define a function to poll for the processing status of the BOM file
 get_bom_token_status() {
-  local uri="$1/api/v1/bom/token/$token"
   local api_key="$2"
   local token="$3"
+  local uri="$1/api/v1/bom/token/$token"
   declare -i poll_counter=0
   local curl_params=(
     -s
