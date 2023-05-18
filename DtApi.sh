@@ -74,7 +74,6 @@ get_project() {
   local response=$(curl "${curl_params[@]}")
   echo "$response"
 }
-}
 
 get_project_lookup() {
   local dt_api_key="$1"
