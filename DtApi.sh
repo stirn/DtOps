@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Define a function to upload the BOM file and retrieve the processing token
+#- BOM SECTION
+#--- Upload a supported bill of material format document
 post_bom() {
   local uri="$1/api/v1/bom"
   local api_key="$2"
@@ -8,8 +9,7 @@ post_bom() {
   local file_name="$4"
   local curl_params=(
     -s
-    -X
-    'POST'
+    -X 'POST'
     "$uri"
     -H "X-Api-Key: $api_key"
     -H "Content-Type:multipart/form-data"
@@ -21,7 +21,7 @@ post_bom() {
   echo "$response"
 }
 
-# Define a function to poll for the processing status of the BOM file
+#--- Determines if there are any tasks associated with the token that are being processed
 get_bom_token_status() {
   local api_key="$2"
   local token="$3"
@@ -29,8 +29,7 @@ get_bom_token_status() {
   declare -i poll_counter=0
   local curl_params=(
     -s
-    -X
-    'GET'
+    -X 'GET'
     "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"
@@ -43,15 +42,15 @@ get_bom_token_status() {
   done
 }
 
-# Define a function to retrieve the project metrics
+#- METRICS SECTION
+#--- Returns current metrics for a specific project
 get_project_metrics() {
   local api_key="$2"
   local project_uuid="$3"
   local uri="$1/api/v1/metrics/project/$project_uuid/current"
   local curl_params=(
     -s
-    -X
-    'GET'
+    -X 'GET'
     "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"
@@ -60,13 +59,14 @@ get_project_metrics() {
   echo "$response"
 }
 
+#- PROJECT SECTION
+#--- Returns a list of all projects
 get_project() {
   local uri="$1/api/v1/project"
   local api_key="$2"
   local curl_params=(
     -s
-    -X
-    'GET'
+    -X 'GET'
     "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"
@@ -75,14 +75,14 @@ get_project() {
   echo "$response"
 }
 
+#--- Returns a specific project by its name and version
 get_project_lookup() {
   local api_key="$2"
   local project_name="$3"
   local uri="$1/api/v1/project/lookup?name=$project_name"
   local curl_params=(
     -s
-    -X
-    'GET'
+    -X 'GET'
     "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"
