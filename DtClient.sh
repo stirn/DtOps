@@ -11,7 +11,7 @@ PostBom() {
     while getopts "u:k:n:f:" opt; do
         case $opt in
             u)
-                apiUrl=$OPTARG
+                apiUrl=${api_url}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -39,7 +39,7 @@ GetBomTokenStatus() {
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=$OPTARG
+                apiUrl=${api_url}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -64,7 +64,7 @@ GetProjectMetrics() {
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=$OPTARG
+                apiUrl=${api_url}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
@@ -110,7 +110,7 @@ GetProjectLookup() {
     while getopts "u:k:n:" opt; do
         case $opt in
             u)
-                apiUrl=$OPTARG
+                apiUrl=${api_url}${OPTARG}
                 ;;
             k)
                 apiKey=$OPTARG
