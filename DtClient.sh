@@ -26,7 +26,6 @@ post_bom() {
     done
     shift $((OPTIND - 1))
 
-    # Add your code here to handle the "PostBom" option
     echo "PostBom selected"
     echo "API URL: $apiUrl"
     echo "API Key: $apiKey"
@@ -39,7 +38,6 @@ get_bom_token_status() {
     local apiKey=""
     local bomToken=""
 
-    # Parse command-line options and arguments
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
@@ -57,7 +55,6 @@ get_bom_token_status() {
     done
     shift $((OPTIND - 1))
 
-    # Add your code here to handle the "GetBomTokenStatus" option
     echo "GetBomTokenStatus selected"
     echo "API URL: $apiUrl"
     echo "API Key: $apiKey"
@@ -65,11 +62,27 @@ get_bom_token_status() {
 }
 
 get_project_metrics() {
-    local apiUrl="$1"
-    local apiKey="$2"
-    local projectUuid="$3"
+    local apiUrl=""
+    local apiKey=""
+    local projectUuid=""
 
-    # Add your code here to handle the "GetProjectMetrics" option
+    while getopts "u:k:t:" opt; do
+        case $opt in
+            u)
+                apiUrl=$OPTARG
+                ;;
+            k)
+                apiKey=$OPTARG
+                ;;
+            d)
+                projectUuid=$OPTARG
+                ;;
+            *)
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
     echo "GetProjectMetrics selected"
     echo "API URL: $apiUrl"
     echo "API Key: $apiKey"
@@ -77,10 +90,23 @@ get_project_metrics() {
 }
 
 get_project() {
-    local apiUrl="$1"
-    local apiKey="$2"
+    local apiUrl="https://"
+    local apiKey=""
 
-    # Add your code here to handle the "GetProject" option
+    while getopts "u:k:t:" opt; do
+        case $opt in
+            u)
+                apiUrl=${apiUrl}${OPTARG}
+                ;;
+            k)
+                apiKey=$OPTARG
+                ;;
+            *)
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
     echo "GetProject selected"
     echo "API URL: $apiUrl"
     echo "API Key: $apiKey"
@@ -91,7 +117,6 @@ get_project_lookup() {
     local apiKey="$2"
     local projectName="$3"
 
-    # Add your code here to handle the "GetProjectLookup" option
     echo "GetProjectLookup selected"
     echo "API URL: $apiUrl"
     echo "API Key: $apiKey"

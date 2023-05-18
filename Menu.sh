@@ -6,7 +6,6 @@ print_help() {
     echo "  PostBom               Upload a supported bill of material format document"
     echo "  GetBomTokenStatus     Determines if there are any tasks associated with the token that are being processed"
     echo ""
-    # Add descriptions for each command
     echo "Command Descriptions:"
     echo "  PostBom:              This command allows you to upload a supported bill of material format document."
     echo "                        Required options: -u/--url, -k/--apiKey, -n/--projectName, -f/--fileName"
@@ -15,7 +14,7 @@ print_help() {
     echo "                        that are being processed."
     echo "                        Required options: -u/--url, -k/--apiKey, -t/--bomToken"
     echo ""
-    # Add descriptions for other commands...
+    # ...to be continued
 }
 
 case $1 in
