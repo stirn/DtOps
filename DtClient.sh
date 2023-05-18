@@ -155,6 +155,7 @@ case $1 in
         ;;
     *)
         echo "Invalid option: $1"
+        print_help
         exit 1
         ;;
 esac
