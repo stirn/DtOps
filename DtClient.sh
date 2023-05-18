@@ -3,10 +3,30 @@
 source $(dirname $(realpath $0))/Menu.sh
 
 post_bom() {
-    local apiUrl="$1"
-    local apiKey="$2"
-    local projectName="$3"
-    local fileName="$4"
+    local apiUrl=""
+    local apiKey=""
+    local projectName=""
+    local fileName=""
+
+    while getopts "u:k:n:f:" opt; do
+        case $opt in
+            u)
+                apiUrl=$OPTARG
+                ;;
+            k)
+                apiKey=$OPTARG
+                ;;
+            n)
+                projectName=$OPTARG
+                ;;
+            f)
+                fileName=$OPTARG
+                ;;
+            *)
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
 
     # Add your code here to handle the "PostBom" option
     echo "PostBom selected"
@@ -17,9 +37,27 @@ post_bom() {
 }
 
 get_bom_token_status() {
-    local apiUrl="$1"
-    local apiKey="$2"
-    local bomToken="$3"
+    local apiUrl=""
+    local apiKey=""
+    local bomToken=""
+
+    # Parse command-line options and arguments
+    while getopts "u:k:t:" opt; do
+        case $opt in
+            u)
+                apiUrl=$OPTARG
+                ;;
+            k)
+                apiKey=$OPTARG
+                ;;
+            t)
+                bomToken=$OPTARG
+                ;;
+            *)
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
 
     # Add your code here to handle the "GetBomTokenStatus" option
     echo "GetBomTokenStatus selected"
