@@ -45,9 +45,9 @@ get_bom_token_status() {
 
 # Define a function to retrieve the project metrics
 get_project_metrics() {
-  local uri="$1/api/v1/metrics/project/$project_uuid/current"
   local api_key="$2"
   local project_uuid="$3"
+  local uri="$1/api/v1/metrics/project/$project_uuid/current"
   local curl_params=(
     -s
     -X
