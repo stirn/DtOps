@@ -28,11 +28,7 @@ PostBom() {
     done
     shift $((OPTIND - 1))
 
-    echo "PostBom selected"
-    echo "API URL: $apiUrl"
-    echo "API Key: $apiKey"
-    echo "Project Name: $projectName"
-    echo "File Name: $fileName"
+    post_bom $apiUrl $apiKey $projectName $fileName | jq '.'
 }
 
 GetBomTokenStatus() {
@@ -57,10 +53,7 @@ GetBomTokenStatus() {
     done
     shift $((OPTIND - 1))
 
-    echo "GetBomTokenStatus selected"
-    echo "API URL: $apiUrl"
-    echo "API Key: $apiKey"
-    echo "BOM Token: $bomToken"
+    get_bom_token_status $apiUrl $apiKey $bomToken | jq '.'
 }
 
 GetProjectMetrics() {
@@ -85,10 +78,7 @@ GetProjectMetrics() {
     done
     shift $((OPTIND - 1))
 
-    echo "GetProjectMetrics selected"
-    echo "API URL: $apiUrl"
-    echo "API Key: $apiKey"
-    echo "Project UUID: $projectUuid"
+    get_project_metrics $apiUrl $apiKey $projectUuid | jq '.'
 }
 
 GetProject() {
@@ -134,10 +124,7 @@ GetProjectLookup() {
     done
     shift $((OPTIND - 1))
 
-    echo "GetProjectLookup selected"
-    echo "API URL: $apiUrl"
-    echo "API Key: $apiKey"
-    echo "Project Name: $projectName"
+    get_project_lookup $api_url $api_key $projectName | jq '.'
 }
 
 source $(dirname $(realpath $0))/Menu.sh

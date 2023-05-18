@@ -2,20 +2,20 @@
 
 # Define a function to upload the BOM file and retrieve the processing token
 post_bom() {
-  local dt_api_key="$1"
-  local project_name="$2"
-  local filename="$3"
-  local url="$dt_url/api/v1/bom"
+  local uri="$1/api/v1/bom"
+  local api_key="$2"
+  local project_name="$3"
+  local file_name="$4"
   local curl_params=(
     -s
     -X
     'POST'
-    "$url"
-    -H "X-Api-Key: $dt_api_key"
+    "$uri"
+    -H "X-Api-Key: $api_key"
     -H "Content-Type:multipart/form-data"
     -F projectName=$project_name
     -F autoCreate=true
-    -F bom=@$filename
+    -F bom=@$file_name
   )
   local response=$(curl "${curl_params[@]}")
   echo "$response"
@@ -23,16 +23,16 @@ post_bom() {
 
 # Define a function to poll for the processing status of the BOM file
 get_bom_token_status() {
-  local dt_api_key="$1"
-  local token="$2"
-  local url="$dt_url/api/v1/bom/token/$token"
+  local uri="$1/api/v1/bom/token/$token"
+  local api_key="$2"
+  local token="$3"
   declare -i poll_counter=0
   local curl_params=(
     -s
     -X
     'GET'
-    "$url"
-    -H "X-Api-Key: $dt_api_key"
+    "$uri"
+    -H "X-Api-Key: $api_key"
     -H "accept: application/json"
   )
   while true; do
@@ -45,15 +45,15 @@ get_bom_token_status() {
 
 # Define a function to retrieve the project metrics
 get_project_metrics() {
-  local dt_api_key="$1"
-  local project_uuid="$2"
-  local url="$dt_url/api/v1/metrics/project/$project_uuid/current"
+  local uri="$1/api/v1/metrics/project/$project_uuid/current"
+  local api_key="$2"
+  local project_uuid="$3"
   local curl_params=(
     -s
     -X
     'GET'
-    "$url"
-    -H "X-Api-Key: $dt_api_key"
+    "$uri"
+    -H "X-Api-Key: $api_key"
     -H "accept: application/json"
   )
   local response=$(curl "${curl_params[@]}")
@@ -76,15 +76,15 @@ get_project() {
 }
 
 get_project_lookup() {
-  local dt_api_key="$1"
-  local project_name="$2"
-  local url="$dt_url/api/v1/project/lookup?name=$project_name"
+  local uri="$1/api/v1/project/lookup?name=$project_name"
+  local api_key="$2"
+  local project_name="$3"
   local curl_params=(
     -s
     -X
     'GET'
-    "$url"
-    -H "X-Api-Key: $dt_api_key"
+    "$uri"
+    -H "X-Api-Key: $api_key"
     -H "accept: application/json"
   )
   local response=$(curl "${curl_params[@]}")
