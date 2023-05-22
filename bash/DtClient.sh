@@ -103,17 +103,13 @@ GetProject() {
 }
 
 GetProjectLookup() {
-    local apiUrl="https://"
-    local apiKey=""
-    #local projectName=""
-
     while getopts "u:k:n:" opt; do
         case $opt in
             u)
-                apiUrl=${apiUrl}${OPTARG}
+                local apiUrl="https://"${OPTARG}
                 ;;
             k)
-                apiKey=$OPTARG
+                local apiKey=$OPTARG
                 ;;
             n)
                 local projectName=$OPTARG
@@ -123,7 +119,6 @@ GetProjectLookup() {
         esac
     done
     shift $((OPTIND - 1))
-
     get_project_lookup $apiUrl $apiKey $projectName | jq '.'
 }
 
