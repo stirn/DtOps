@@ -105,7 +105,7 @@ GetProject() {
 GetProjectLookup() {
     local apiUrl="https://"
     local apiKey=""
-    local projectName=""
+    #local projectName=""
 
     while getopts "u:k:n:" opt; do
         case $opt in
@@ -116,7 +116,7 @@ GetProjectLookup() {
                 apiKey=$OPTARG
                 ;;
             n)
-                projectName=$OPTARG
+                local projectName=$OPTARG
                 ;;
             *)
                 ;;
