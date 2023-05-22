@@ -46,7 +46,7 @@ GetBomTokenStatus() {
 }
 
 GetProjectMetrics() {
-    while getopts "u:k:t:" opt; do
+    while getopts "u:k:d:" opt; do
         case $opt in
             u)
                 local apiUrl="https://"${OPTARG}
@@ -66,7 +66,7 @@ GetProjectMetrics() {
 }
 
 GetProject() {
-    while getopts "u:k:t:" opt; do
+    while getopts "u:k:" opt; do
         case $opt in
             u)
                 local apiUrl="https://"${OPTARG}
