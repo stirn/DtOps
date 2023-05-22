@@ -3,102 +3,82 @@
 source $(dirname $(realpath $0))/DtApi.sh
 
 PostBom() {
-    local apiUrl="https://"
-    local apiKey=""
-    local projectName=""
-    local fileName=""
-
     while getopts "u:k:n:f:" opt; do
         case $opt in
             u)
-                apiUrl=${apiUrl}${OPTARG}
+                local apiUrl="https://"${OPTARG}
                 ;;
             k)
-                apiKey=$OPTARG
+                local apiKey=$OPTARG
                 ;;
             n)
-                projectName=$OPTARG
+                local projectName=$OPTARG
                 ;;
             f)
-                fileName=$OPTARG
+                local fileName=$OPTARG
                 ;;
             *)
                 ;;
         esac
     done
     shift $((OPTIND - 1))
-
     post_bom $apiUrl $apiKey $projectName $fileName | jq '.'
 }
 
 GetBomTokenStatus() {
-    local apiUrl="https://"
-    local apiKey=""
-    local bomToken=""
-
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=${apiUrl}${OPTARG}
+                local apiUrl="https://"${OPTARG}
                 ;;
             k)
-                apiKey=$OPTARG
+                local apiKey=$OPTARG
                 ;;
             t)
-                bomToken=$OPTARG
+                local bomToken=$OPTARG
                 ;;
             *)
                 ;;
         esac
     done
     shift $((OPTIND - 1))
-
     get_bom_token_status $apiUrl $apiKey $bomToken
 }
 
 GetProjectMetrics() {
-    local apiUrl="https://"
-    local apiKey=""
-    local projectUuid=""
-
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=${apiUrl}${OPTARG}
+                local apiUrl="https://"${OPTARG}
                 ;;
             k)
-                apiKey=$OPTARG
+                local apiKey=$OPTARG
                 ;;
             d)
-                projectUuid=$OPTARG
+                local projectUuid=$OPTARG
                 ;;
             *)
                 ;;
         esac
     done
     shift $((OPTIND - 1))
-
     get_project_metrics $apiUrl $apiKey $projectUuid | jq '.'
 }
 
 GetProject() {
-    local apiUrl="https://"
-    local apiKey=""
-
     while getopts "u:k:t:" opt; do
         case $opt in
             u)
-                apiUrl=${apiUrl}${OPTARG}
+                local apiUrl="https://"${OPTARG}
                 ;;
             k)
-                apiKey=$OPTARG
+                local apiKey=$OPTARG
                 ;;
             *)
                 ;;
         esac
     done
     shift $((OPTIND - 1))
-
     get_project $apiUrl $apiKey | jq '.'
 }
 
