@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem "optparse", "~> 0.3.1"
+
+gem "net-http", "~> 0.3.2"
+
+gem "json", "~> 2.6"
