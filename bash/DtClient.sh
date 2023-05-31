@@ -26,9 +26,9 @@ PostBom() {
     local response_body=$(echo $response | awk -F":curl_output:" '{print $1}')
     local curl_output=$(echo $response | awk -F":curl_output:" '{print $2}')
     if [[ -n $response_body ]]; then
-        echo -e $response_body | jq '.' >&2
+        echo $response_body | jq '.'
     else
-        echo -e "--- Error: $curl_output" >&2
+        echo "--- Error: $curl_output" >&2
         exit 1
     fi
 }
@@ -76,7 +76,7 @@ GetProjectMetrics() {
     if [[ -n $response_body ]]; then
         echo $response_body | jq '.'
     else
-        echo "--- Error: $curl_output"
+        echo "--- Error: $curl_output" >&2
         exit 1
     fi
 }
@@ -101,7 +101,7 @@ GetProject() {
     if [[ -n $response_body ]]; then
         echo $response_body | jq '.'
     else
-        echo "--- Error: $curl_output"
+        echo "--- Error: $curl_output" >&2
         exit 1
     fi
 }
@@ -129,7 +129,7 @@ GetProjectLookup() {
     if [[ -n $response_body ]]; then
         echo $response_body | jq '.'
     else
-        echo "--- Error: $curl_output"
+        echo "--- Error: $curl_output" >&2
         exit 1
     fi
 }
