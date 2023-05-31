@@ -32,40 +32,108 @@ class Program
 
     static JObject PostBom(PostBomOptions opts)
     {
-        Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
-        JObject token = Api.PostBom(opts.projectName, opts.fileName);
-        Console.WriteLine(token);
-        return token;
+        try
+        {
+            Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
+            JObject token = Api.PostBom(opts.projectName, opts.fileName);
+            Console.WriteLine(token);
+            return token;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine("--- HTTP request error occurred: " + ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            // Handle non-HTTP errors
+            Console.WriteLine("--- Something went wrong: " + ex.Message + "\n--- Please check command options");
+            return null;
+        }
     }
 
     static void GetBomTokenStatus(GetBomTokenStatusOptions opts)
     {
-        Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
-        Api.GetBomTokenStatus(opts.bomToken);
+        try
+        {
+            Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
+            Api.GetBomTokenStatus(opts.bomToken);
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine("--- HTTP request error occurred: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handle non-HTTP errors
+            Console.WriteLine("--- Something went wrong: " + ex.Message + "\n--- Please check command options");
+        }
     }
 
     static JObject GetProjectMetrics(GetProjectMetricsOptions opts)
     {
-        Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
-        JObject projectMetrics = Api.GetProjectMetrics(opts.projectUuid);
-        Console.WriteLine(projectMetrics);
-        return projectMetrics;
+        try
+        {
+            Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
+            JObject projectMetrics = Api.GetProjectMetrics(opts.projectUuid);
+            Console.WriteLine(projectMetrics);
+            return projectMetrics;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine("--- HTTP request error occurred: " + ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            // Handle non-HTTP errors
+            Console.WriteLine("--- Something went wrong: " + ex.Message + "\n--- Please check command options");
+            return null;
+        }
     }
 
     static JArray GetProject(GetProjectOptions opts)
     {
-        Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
-        JArray projectList = Api.GetProject();
-        Console.WriteLine(projectList);
-        return projectList;
+        try
+        {
+            Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
+            JArray projectList = Api.GetProject();
+            Console.WriteLine(projectList);
+            return projectList;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine("--- HTTP request error occurred: " + ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            // Handle non-HTTP errors
+            Console.WriteLine("--- Something went wrong: " + ex.Message + "\n--- Please check command options");
+            return null;
+        }
     }
 
     static JObject GetProjectLookup(GetProjectLookupOptions opts)
     {
-        Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
-        JObject project = Api.GetProjectLookup(opts.projectName);
-        Console.WriteLine(project);
-        return project;
+        try
+        {
+            Api Api = new Api($"https://{opts.apiUrl}", opts.apiKey);
+            JObject project = Api.GetProjectLookup(opts.projectName);
+            Console.WriteLine(project);
+            return project;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine("--- HTTP request error occurred: " + ex.Message);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            // Handle non-HTTP errors
+            Console.WriteLine("--- Something went wrong: " + ex.Message + "\n--- Please check command options");
+            return null;
+        }
     }
 
     static string JParse(JParseOptions opts)
