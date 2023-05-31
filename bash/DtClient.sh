@@ -29,6 +29,7 @@ PostBom() {
         echo $response_body | jq '.'
     else
         echo "--- Error: $curl_output"
+        exit 1
     fi
 }
 
@@ -76,6 +77,7 @@ GetProjectMetrics() {
         echo $response_body | jq '.'
     else
         echo "--- Error: $curl_output"
+        exit 1
     fi
 }
 
@@ -100,6 +102,7 @@ GetProject() {
         echo $response_body | jq '.'
     else
         echo "--- Error: $curl_output"
+        exit 1
     fi
 }
 
@@ -127,6 +130,7 @@ GetProjectLookup() {
         echo $response_body | jq '.'
     else
         echo "--- Error: $curl_output"
+        exit 1
     fi
 }
 
