@@ -9,6 +9,7 @@ post_bom() {
   local file_name="$4"
   local curl_params=(
     -s
+    -w ":curl_output:http_code=%{http_code}"
     -X 'POST' "$uri"
     -H "X-Api-Key: $api_key"
     -H "Content-Type:multipart/form-data"
@@ -48,6 +49,7 @@ get_project_metrics() {
   local uri="$1/api/v1/metrics/project/$project_uuid/current"
   local curl_params=(
     -s
+    -w ":curl_output:http_code=%{http_code}"
     -X 'GET' "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"
@@ -63,6 +65,7 @@ get_project() {
   local api_key="$2"
   local curl_params=(
     -s
+    -w ":curl_output:http_code=%{http_code}"
     -X 'GET' "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"
@@ -78,6 +81,7 @@ get_project_lookup() {
   local uri="$1/api/v1/project/lookup?name=$project_name"
   local curl_params=(
     -s
+    -w ":curl_output:http_code=%{http_code}"
     -X 'GET' "$uri"
     -H "X-Api-Key: $api_key"
     -H "accept: application/json"

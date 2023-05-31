@@ -22,7 +22,14 @@ PostBom() {
         esac
     done
     shift $((OPTIND - 1))
-    post_bom $apiUrl $apiKey $projectName $fileName | jq '.'
+    local response=$(post_bom $apiUrl $apiKey $projectName $fileName)
+    local response_body=$(echo $response | awk -F":curl_output:" '{print $1}')
+    local curl_output=$(echo $response | awk -F":curl_output:" '{print $2}')
+    if [[ -n $response_body ]]; then
+        echo $response_body | jq '.'
+    else
+        echo "--- Error: $curl_output"
+    fi
 }
 
 GetBomTokenStatus() {
@@ -62,7 +69,14 @@ GetProjectMetrics() {
         esac
     done
     shift $((OPTIND - 1))
-    get_project_metrics $apiUrl $apiKey $projectUuid | jq '.'
+    local response=$(get_project_metrics $apiUrl $apiKey $projectUuid)
+    local response_body=$(echo $response | awk -F":curl_output:" '{print $1}')
+    local curl_output=$(echo $response | awk -F":curl_output:" '{print $2}')
+    if [[ -n $response_body ]]; then
+        echo $response_body | jq '.'
+    else
+        echo "--- Error: $curl_output"
+    fi
 }
 
 GetProject() {
@@ -79,7 +93,14 @@ GetProject() {
         esac
     done
     shift $((OPTIND - 1))
-    get_project $apiUrl $apiKey | jq '.'
+    local response=$(get_project $apiUrl $apiKey)
+    local response_body=$(echo $response | awk -F":curl_output:" '{print $1}')
+    local curl_output=$(echo $response | awk -F":curl_output:" '{print $2}')
+    if [[ -n $response_body ]]; then
+        echo $response_body | jq '.'
+    else
+        echo "--- Error: $curl_output"
+    fi
 }
 
 GetProjectLookup() {
@@ -99,7 +120,14 @@ GetProjectLookup() {
         esac
     done
     shift $((OPTIND - 1))
-    get_project_lookup $apiUrl $apiKey $projectName | jq '.'
+    local response=$(get_project_lookup $apiUrl $apiKey $projectName)
+    local response_body=$(echo $response | awk -F":curl_output:" '{print $1}')
+    local curl_output=$(echo $response | awk -F":curl_output:" '{print $2}')
+    if [[ -n $response_body ]]; then
+        echo $response_body | jq '.'
+    else
+        echo "--- Error: $curl_output"
+    fi
 }
 
 source $(dirname $(realpath $0))/Menu.sh
