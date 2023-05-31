@@ -26,9 +26,9 @@ PostBom() {
     local response_body=$(echo $response | awk -F":curl_output:" '{print $1}')
     local curl_output=$(echo $response | awk -F":curl_output:" '{print $2}')
     if [[ -n $response_body ]]; then
-        echo -e $response_body | jq '.'
+        echo -e $response_body | jq '.' >&2
     else
-        echo -e "--- Error: $curl_output"
+        echo -e "--- Error: $curl_output" >&2
         exit 1
     fi
 }
